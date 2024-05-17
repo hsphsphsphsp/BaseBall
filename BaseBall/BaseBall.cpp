@@ -3,10 +3,24 @@
 
 using namespace std;
 
+struct GuessResult
+{
+	bool solved;
+	int strikes;
+	int balls;
+};
+
 class BaseBall {
+private:
+	string question;
+
 public:
-	void guess(const string& guessNum) {
+	explicit BaseBall(const string &question) : question(question)
+	{}
+
+	GuessResult guess(const string& guessNum) {
 		assertIllegalArgument(guessNum);
+		return { true, 3, 0 };
 	}
 
 	void assertIllegalArgument(const std::string& guessNum)
@@ -16,7 +30,7 @@ public:
 		}
 
 		for (char ch : guessNum) {
-			if (ch < '0' || ch > '9') continue;
+			if (ch >= '0' && ch <= '9') continue;
 			throw invalid_argument("숫자여야 합니다.");
 		}
 
