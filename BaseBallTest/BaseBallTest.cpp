@@ -1,21 +1,21 @@
 ﻿#include "pch.h"
 #include "../BaseBall/BaseBall.cpp"
 
-TEST(BaseBallGameTest, lengthError) {
+class BaseBallFixture : public testing::Test {
+public:
 	BaseBall game;
+	void assertIllegalArgument(string guessNumber) {
+		try {
+			game.guess(guessNumber);
+			FAIL();
+		}
+		catch (exception e) {
 
-	EXPECT_THROW(game.guess(string("12")), length_error);
-}
-
-TEST(BaseBallGameTest, invalidChar) {
-	BaseBall game;
-
-	try {
-		game.guess("12s");
-		FAIL();
+		}
 	}
-	catch (exception e) {
+};
 
-	}
-	
+TEST_F(BaseBallFixture, InvalidCase) {
+	assertIllegalArgument("12");
+	assertIllegalArgument("12s");
 }
