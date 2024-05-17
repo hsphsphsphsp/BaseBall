@@ -15,5 +15,8 @@ public:
 				throw invalid_argument("숫자여야 합니다.");
 			}
 		}
+
+		if (guessNum[0] == guessNum[1] || guessNum[1] == guessNum[2] || guessNum[0] == guessNum[2])
+			throw invalid_argument("숫자가 중복되면 안됩니다.");
 	}
 };
