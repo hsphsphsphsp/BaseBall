@@ -20,7 +20,28 @@ public:
 
 	GuessResult guess(const string& guessNum) {
 		assertIllegalArgument(guessNum);
-		return { true, 3, 0 };
+
+		if (question == guessNum)
+			return { true, 3, 0 };
+
+		int strikeCnt = 0, ballCnt = 0;
+
+		for (int i = 0; i < 3; i++) {
+			if (question[i] == guessNum[i])
+				strikeCnt++;
+		}
+
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (i == j) continue;
+				if (question[i] == guessNum[j]) {
+					ballCnt++;
+					continue;
+				}
+			}
+		}
+
+		return { false, strikeCnt, ballCnt };
 	}
 
 	void assertIllegalArgument(const std::string& guessNum)
