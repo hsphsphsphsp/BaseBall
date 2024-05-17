@@ -15,7 +15,7 @@ private:
 	string question;
 
 public:
-	explicit BaseBall(const string &question) : question(question)
+	explicit BaseBall(const string& question) : question(question)
 	{}
 
 	GuessResult guess(const string& guessNum) {
@@ -24,13 +24,13 @@ public:
 		int strikeCnt = 0, ballCnt = 0;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				if (question[i] == guessNum[j]) {
-					if (i == j) {
-						strikeCnt++;
-						continue;
-					}
-					ballCnt++;
+				if (question[i] != guessNum[j]) continue;
+
+				if (i == j) {
+					strikeCnt++;
+					continue;
 				}
+				ballCnt++;
 			}
 		}
 
