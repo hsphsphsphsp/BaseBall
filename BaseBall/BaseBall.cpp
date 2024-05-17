@@ -9,5 +9,11 @@ public:
 		if (str.length() != 3) {
 			throw length_error("3자리 숫자여야 합니다.");
 		}
+
+		for (char ch : str) {
+			if (ch < '0' || ch > '9') {
+				throw invalid_argument("숫자여야 합니다.");
+			}
+		}
 	}
 };
