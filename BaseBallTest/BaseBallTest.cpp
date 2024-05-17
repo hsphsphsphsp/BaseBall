@@ -3,7 +3,6 @@
 
 TEST(BaseBallGameTest, ZeroScore) {
 	BaseBall game;
-	EXPECT_EQ(1, 1);
-	EXPECT_EQ(1, 1);
-	EXPECT_EQ(1, 1);
+
+	EXPECT_THROW(game.guess(string("12")), length_error);
 }
